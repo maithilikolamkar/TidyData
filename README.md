@@ -1,6 +1,6 @@
 # TidyData
 
-Steps followed in the RunAnalysis.r file are as follows
+Steps followed in the runAnalysis.r file are as follows
 
 1) Check if file has been downloaded and extracted already else Download and extract it 
 2) Read feature, activity label file in the variables features, activity_label respectively and add legible column names
