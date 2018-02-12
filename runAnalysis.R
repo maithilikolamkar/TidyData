@@ -1,20 +1,20 @@
 #Check if file has been downloaded and extracted already else load it
 
-if (!file.exists('raw_data'))
+if (!file.exists('raw_data')){
   dir.create('raw_data')
-else
-  print('File exists')
+} else {
+  print('File exists')}
 if (!file.exists('./raw_data/raw_data.zip')) {
   filepath <-
     'https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip'
   download.file(filepath, './raw_data/raw_data.zip')
-} else
-  print('Zip exists')
+} else {
+  print('Zip exists')}
 if (!file.exists('./raw_data/UCI HAR Dataset'))
 {
   unzip('./raw_data/raw_data.zip', exdir = './raw_data')
-} else
-  print("Folder exists")
+} else {
+  print("Folder exists")}
 
 #Read feature file
 features <- read.table('./raw_data/UCI HAR Dataset/features.txt')
