@@ -107,6 +107,6 @@ head(colnames(Agg_Set))
 colnames(Agg_Set)[1]<-'Activity'
 colnames(Agg_Set)[2]<-'Subject'
 #Final Output
-write.csv(Agg_Set,'./Tidy_Output_Set.csv')
+write.table(Agg_Set,'./Tidy_Output_Set.txt')
 
 
