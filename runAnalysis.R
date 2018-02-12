@@ -103,3 +103,10 @@ Agg_Set <-
     by = list(Merged_Set_Labels$Activity.Label, Merged_Set_Labels$Subject),
     mean
   )
+head(colnames(Agg_Set))
+colnames(Agg_Set)[1]<-'Activity'
+colnames(Agg_Set)[2]<-'Subject'
+#Final Output
+write.csv(Agg_Set,'./Tidy_Output_Set.csv')
+
+
