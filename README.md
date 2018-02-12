@@ -2,7 +2,7 @@
 
 #Input: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
-#Output: Tidy data set file: Tidy_Output_Set.csv
+#Output: Tidy data set file: Tidy_Output_Set.txt
 
 #Steps followed in the runAnalysis.r file are as follows
 
@@ -13,4 +13,4 @@
 5) Merge them based on common column names
 6) Rename variable names based on features info file
 7) Create a new dataset with averages of all variables for all activities and subjects
-8) Write the final tidy set in a file Tidy_Output_Set.csv
+8) Write the final tidy set in a file Tidy_Output_Set.txt
