@@ -25,7 +25,7 @@ activity_labels <-
   )
 #head(activity_labels)
 
-  #Read Test tables
+#Read Test tables
 
 subject_test <-
   read.table('./raw_data/UCI HAR Dataset/test/subject_test.txt',
@@ -69,34 +69,35 @@ Merged_Set <- rbind(Test_Set, Train_Set)
 
 #Get column numbers for Mean and Standard Deviation columns
 set_columns <- colnames(Merged_Set)
-mean_columns <- grep('mean\\.', set_columns)
+mean_columns <- grep('mean', set_columns)
 std_columns <- grep('std', set_columns)
-
+#str(Merged_Set)
 #Extract Data from the columns returned for mean and SD
-Data_Extract <- Merged_Set[, c(mean_columns, std_columns)]
+Data_Extract <- Merged_Set[, c(1,2,mean_columns, std_columns)]
 #head(Data_Extract)
-
+#str(Data_Extract)
 #Use activiy_labels data set to name activities in merged set
-Merged_Set_Labels <- merge(activity_labels, Merged_Set)
+Merged_Set_Labels <- merge(activity_labels, Data_Extract)
 #head(Merged_Set_Labels)
 
 #Use featuresinfo file to rename variable names
 col_names <- colnames(Merged_Set_Labels)
 #head(col_names)
-col_names <- sub('^t', 'Time of ', col_names)
-col_names <- sub('^f', 'Frequency of ', col_names)
-col_names <- sub('Acc', ' Acceleration ', col_names)
-col_names <- sub('Gyro', ' Angular Velocity ', col_names)
-col_names <- sub('BodyBody', 'Body', col_names)
-col_names <- sub('Mag', ' Magnitude', col_names)
+col_names <- gsub('^t', 'Time of ', col_names)
+col_names <- gsub('^f', 'Frequency of ', col_names)
+col_names <- gsub('Acc', ' Acceleration ', col_names)
+col_names <- gsub('Gyro', ' Angular Velocity ', col_names)
+col_names <- gsub('BodyBody', 'Body', col_names)
+col_names <- gsub('Mag', ' Magnitude', col_names)
 
 colnames(Merged_Set_Labels) <- col_names
-#head(Merged_Set_Labels)
-
+head(Merged_Set_Labels)
+#str(Merged_Set_Labels)
+Merged_Set_Labels$Label.No.<-NULL
 #Create a new dataset with averages of all variables for all activities and subjects
 Agg_Set <-
   aggregate(
-    Merged_Set_Labels[, 4:564],
+    Merged_Set_Labels[, 3:81],
     by = list(Merged_Set_Labels$Activity.Label, Merged_Set_Labels$Subject),
     mean
   )
@@ -105,5 +106,4 @@ colnames(Agg_Set)[1]<-'Activity'
 colnames(Agg_Set)[2]<-'Subject'
 #Final Output
 write.table(Agg_Set,'./Tidy_Output_Set.txt',row.name=FALSE)
-
 
